@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/helpers/drawar_navigation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,10 +12,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue.withOpacity(0.5),
-        title: Text("To-do SQFlite"),
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.deepPurple,
+          title: Text(
+            "To-Do List",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        drawer: DrawarNavigation());
   }
 }
