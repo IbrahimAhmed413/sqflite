@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/home_screen.dart';
+import 'package:todoapp/home_screen.dart';
+import 'package:todoapp/services/catagory_service.dart';
+
+import 'models/catagory.dart';
 
 class CatagoriesScreen extends StatefulWidget {
   const CatagoriesScreen({super.key});
@@ -11,6 +14,10 @@ class CatagoriesScreen extends StatefulWidget {
 class _CatagoriesScreenState extends State<CatagoriesScreen> {
   var _catagoryNameController = TextEditingController();
   var _catagoryDescriptionController = TextEditingController();
+
+  var _category = Category();
+  var _categoryService = CategoryService();
+
   _showFormDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -23,8 +30,9 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
                   child: Text("Cancel")),
               TextButton(
                   onPressed: () {
-                    print("Catagory ${_catagoryNameController.text}");
-                    print("Description ${_catagoryDescriptionController.text}");
+                    _category.name = _catagoryNameController.text;
+                    _category.description = _catagoryDescriptionController.text;
+                    _categoryService.SaveCategory(_category);
                   },
                   child: Text("Save")),
             ],

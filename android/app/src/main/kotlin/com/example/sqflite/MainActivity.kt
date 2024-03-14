@@ -1,4 +1,4 @@
-package com.example.sqflite
+package com.example.todoapp
 
 import io.flutter.embedding.android.FlutterActivity
 
