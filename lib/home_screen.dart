@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.deepPurple,
           title: Text(
             "To-Do List",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
         drawer: DrawarNavigation());

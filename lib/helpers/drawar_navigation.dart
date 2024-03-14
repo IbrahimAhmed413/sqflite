@@ -19,9 +19,9 @@ class _DrawarNavigationState extends State<DrawarNavigation> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage(''),
               ),
-              accountName: Text("Ibrahim"),
+              accountName: Text("Ibrahim Ahmed"),
               accountEmail: Text("ibrahimahmed12333@gmail.com"),
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: BoxDecoration(color: Colors.deepPurple),
             ),
             ListTile(
               leading: Icon(Icons.home),
