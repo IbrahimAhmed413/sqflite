@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/home_screen.dart';
 
 class DrawarNavigation extends StatefulWidget {
   @override
@@ -19,6 +20,20 @@ class _DrawarNavigationState extends State<DrawarNavigation> {
               accountName: Text("Ibrahim"),
               accountEmail: Text("ibrahimahmed12333@gmail.com"),
               decoration: BoxDecoration(color: Colors.blue),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.view_list),
+              title: Text("Catagories"),
+              onTap: () {},
             )
           ],
         ),

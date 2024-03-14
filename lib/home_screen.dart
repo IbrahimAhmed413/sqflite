@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/helpers/drawar_navigation.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
