@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/home_screen.dart';
 
+import '../catagoriesScreen.dart';
+
 class DrawarNavigation extends StatefulWidget {
   @override
   State<DrawarNavigation> createState() => _DrawarNavigationState();
@@ -33,7 +35,11 @@ class _DrawarNavigationState extends State<DrawarNavigation> {
             ListTile(
               leading: Icon(Icons.view_list),
               title: Text("Catagories"),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CatagoriesScreen(),
+                ));
+              },
             )
           ],
         ),
