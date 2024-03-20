@@ -29,10 +29,11 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
                   onPressed: () => Navigator.pop(context),
                   child: Text("Cancel")),
               TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     _category.name = _catagoryNameController.text;
                     _category.description = _catagoryDescriptionController.text;
-                    _categoryService.SaveCategory(_category);
+                    var result = await _categoryService.saveCategory(_category);
+                    print(result);
                   },
                   child: Text("Save")),
             ],
