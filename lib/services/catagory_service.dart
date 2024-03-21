@@ -8,7 +8,11 @@ class CategoryService {
   }
 
   // Specify the return type of the method
-  Future<int> saveCategory(Category category) async {
-    return await _repository.inserData('categories', category.categoryMap());
+  saveCategory(Catagory category) async {
+    return await _repository.insertData('categories', category.categoryMap());
+  }
+
+  readCategories() async {
+    _repository.readData('categories');
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/home_screen.dart';
 import 'package:todoapp/services/catagory_service.dart';
 
-import 'models/catagory.dart';
+import 'models/catagory.dart'; // Adjust the path as per your project structure
 
 class CatagoriesScreen extends StatefulWidget {
   const CatagoriesScreen({super.key});
@@ -15,8 +15,30 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
   var _catagoryNameController = TextEditingController();
   var _catagoryDescriptionController = TextEditingController();
 
-  var _category = Category();
+  var _category = Catagory();
   var _categoryService = CategoryService();
+
+  List<Catagory>? _categoryList;
+
+  void initState() {
+    super.initState();
+    getAllCategories();
+  }
+
+  getAllCategories() async {
+    var categories = await _categoryService.readCategories();
+    setState(() {
+      _categoryList!.clear(); // Clear the existing list before adding new items
+      categories.forEach((category) {
+        var categoryModel =
+            Catagory(); // Create a new instance for each category
+        categoryModel.id = category['id'];
+        categoryModel.name = category['name'];
+        categoryModel.description = category['description'];
+        _categoryList!.add(categoryModel); // Add the category to the list
+      });
+    });
+  }
 
   _showFormDialog(BuildContext context) {
     return showDialog(
@@ -73,7 +95,13 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Center(child: Text("Welcome to catagories Screen")),
+      body: ListView.builder(
+          // itemCount: _categoryList.length,
+          itemBuilder: (context, index) {
+        return Card(
+            // child
+            );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showFormDialog(context);
