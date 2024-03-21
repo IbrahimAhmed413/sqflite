@@ -17,8 +17,8 @@ class _DrawarNavigationState extends State<DrawarNavigation> {
           children: <Widget>[
             UserAccountsDrawerHeader(
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage(''),
-              ),
+                  // backgroundImage: AssetImage(''),
+                  ),
               accountName: Text("Ibrahim Ahmed"),
               accountEmail: Text("ibrahimahmed12333@gmail.com"),
               decoration: BoxDecoration(color: Colors.deepPurple),

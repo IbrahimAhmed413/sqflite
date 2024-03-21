@@ -18,8 +18,8 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
   var _category = Catagory();
   var _categoryService = CategoryService();
 
-  List<Catagory>? _categoryList;
-
+  List<Catagory> _categoryList = [];
+  @override
   void initState() {
     super.initState();
     getAllCategories();
@@ -27,17 +27,21 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
 
   getAllCategories() async {
     var categories = await _categoryService.readCategories();
-    setState(() {
-      _categoryList!.clear(); // Clear the existing list before adding new items
-      categories.forEach((category) {
-        var categoryModel =
-            Catagory(); // Create a new instance for each category
-        categoryModel.id = category['id'];
-        categoryModel.name = category['name'];
-        categoryModel.description = category['description'];
-        _categoryList!.add(categoryModel); // Add the category to the list
+    if (categories != null) {
+      setState(() {
+        _categoryList
+            .clear(); // Clear the existing list before adding new items
+        categories.forEach((category) {
+          var categoryModel = Catagory();
+          categoryModel.id = category['id'];
+          categoryModel.name = category['name'];
+          categoryModel.description = category['description'];
+          _categoryList.add(categoryModel); // Add the category to the list
+        });
       });
-    });
+    } else {
+      print("The ctagory cannot be null");
+    }
   }
 
   _showFormDialog(BuildContext context) {
@@ -54,8 +58,8 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
                   onPressed: () async {
                     _category.name = _catagoryNameController.text;
                     _category.description = _catagoryDescriptionController.text;
-                    var result = await _categoryService.saveCategory(_category);
-                    print(result);
+                    var res = await _categoryService.saveCategory(_category);
+                    print(res);
                   },
                   child: Text("Save")),
             ],
@@ -96,12 +100,26 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
         ),
       ),
       body: ListView.builder(
-          // itemCount: _categoryList.length,
-          itemBuilder: (context, index) {
-        return Card(
-            // child
-            );
-      }),
+        itemCount: _categoryList.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              leading: IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+              title: Row(
+                children: <Widget>[
+                  Text(
+                      "${_categoryList[index].name}"), // Removed quotes around _categoryList[index].name
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.delete),
+                    color: Colors.red,
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showFormDialog(context);

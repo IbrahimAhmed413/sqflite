@@ -3,18 +3,22 @@ import 'package:sqflite/sqflite.dart';
 import 'database_connection.dart';
 
 class Repository {
-  late Databaseconnection _databaseConnection;
+  Databaseconnection? _databaseConnection;
 
   Repository() {
     // Corrected the constructor name
     _databaseConnection = Databaseconnection();
   }
 
-  static late Database _database;
+  static Database? _database;
 
   Future<Database> get database async {
-    _database = await _databaseConnection.setDatabase();
-    return _database;
+    if (_database != null) {
+      return _database!;
+    }
+
+    _database = await _databaseConnection?.setDatabase();
+    return _database!;
   }
 
   insertData(table, data) async {

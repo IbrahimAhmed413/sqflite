@@ -13,6 +13,6 @@ class CategoryService {
   }
 
   readCategories() async {
-    _repository.readData('categories');
+    return await _repository.readData('categories');
   }
 }
