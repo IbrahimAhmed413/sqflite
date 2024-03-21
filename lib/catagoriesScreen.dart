@@ -102,19 +102,26 @@ class _CatagoriesScreenState extends State<CatagoriesScreen> {
       body: ListView.builder(
         itemCount: _categoryList.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              leading: IconButton(icon: Icon(Icons.edit), onPressed: () {}),
-              title: Row(
-                children: <Widget>[
-                  Text(
-                      "${_categoryList[index].name}"), // Removed quotes around _categoryList[index].name
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.delete),
-                    color: Colors.red,
-                  )
-                ],
+          return Padding(
+            padding: EdgeInsets.only(top: 8.0, left: 16, right: 16),
+            child: Card(
+              elevation: 8.0,
+              child: ListTile(
+                leading: IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                        "${_categoryList[index].name}"), // Removed quotes around _categoryList[index].name
+
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.delete),
+                      color: Colors.red,
+                    )
+                  ],
+                ),
+                subtitle: Text("${_categoryList[index].description}"),
               ),
             ),
           );
